@@ -1,9 +1,8 @@
-# GHL Wallet System Setup Guide (Custom Field + WhatsApp + Workflows)
+# GHL Wallet System Setup Guide (Custom Field + WhatsApp Templates)
 
 This document explains how to set up a Wallet System inside GoHighLevel, including:
 - Custom Field
 - WhatsApp Templates
-- Workflows for Plan Onboarding
 
 ---
 
@@ -128,64 +127,16 @@ Custom Values:
 
 ---
 
-# 3. Workflow Setup
+# 3. Notes
 
-## Folder Creation
-
-Create a workflow folder:
-- Name: Onboarding
-
----
-
-## Workflow 1: Onboarding_basic_plan
-
-- Trigger: None (Manual / API Trigger)
-- Action:
-  - Type: Webhook
-  - Method: POST
-  - URL: Plan 1 (Basic) Webhook URL
+- Ensure WhatsApp templates are approved before use
+- Map custom field correctly in contacts
+- Maintain consistent naming for templates
 
 ---
 
-## Workflow 2: Onboarding_pro_plan
-
-- Trigger: None (Manual / API Trigger)
-- Action:
-  - Type: Webhook
-  - Method: POST
-  - URL: Plan 2 (Pro) Webhook URL
-
----
-
-## Workflow 3: Onboarding_enterprise_plan
-
-- Trigger: None (Manual / API Trigger)
-- Action:
-  - Type: Webhook
-  - Method: POST
-  - URL: Plan 3 (Enterprise) Webhook URL
-
----
-
-# 4. Recommended Automation Logic (Optional)
-
-- Level 1 → Low Balance → wallet_balance_level_1
-- Level 2 → Critical → wallet_balance_level_2
-- Level 3 → Zero → wallet_balance_level_0
-- On Top-up → wallet_top_up_successful
-
----
-
-# 5. Notes
-
-- Ensure WhatsApp templates are approved
-- Replace webhook URLs
-- Map custom fields correctly
-
----
-
-# 6. Outcome
+# 4. Outcome
 
 - Automated wallet alerts
-- Controlled service usage
-- Smooth onboarding via workflows
+- Better user communication
+- Smooth wallet experience for customers
