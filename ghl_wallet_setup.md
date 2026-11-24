@@ -1,9 +1,10 @@
-# GHL Wallet System Setup Guide (Custom Field + WhatsApp Templates)
+# GHL Wallet System Setup Guide (Custom Fields + WhatsApp & Email Templates)
 
 This document explains how to set up a Wallet System inside GoHighLevel, including:
 - Custom Fields (Wallet Balance + Topup URL)
 - Workflow field mapping
 - WhatsApp Templates
+- Email Templates
 
 ---
 
@@ -164,16 +165,145 @@ Custom Values:
 
 ---
 
-# 4. Notes
+# 4. Email Templates Setup
+
+Create these in Marketing → Emails → Templates, inside a folder named **GHL WALLET**. They use the same custom fields as the WhatsApp templates, so the workflow's Update Contact Field step must run before the Send Email step.
+
+Merge fields used:
+- {{contact.first_name}} → customer's first name
+- {{contact.wallet_balance}} → current balance (e.g. ₹450.00)
+- {{contact.topup_url}} → customer's personal top-up link
+
+---
+
+## Email 1: wallet_balance_level_1
+
+- Subject: 💰 Your wallet balance is running low
+- Preview text: Add funds now to avoid any interruption.
+
+Body:
+
+Hi {{contact.first_name}},
+
+Your current wallet balance is **{{contact.wallet_balance}}**. Based on your recent usage, it may run out soon.
+
+To keep your services running without interruption, please add funds now.
+
+If the button doesn't work, copy this link into your browser:
+{{contact.topup_url}}
+
+Thank you!
+
+Button:
+- Text: Recharge Wallet
+- Link: {{contact.topup_url}}
+
+---
+
+## Email 2: wallet_balance_level_2
+
+- Subject: 🚨 Urgent: your wallet balance is almost exhausted
+- Preview text: Recharge now to avoid service interruption.
+
+Body:
+
+Hi {{contact.first_name}},
+
+Your wallet balance is critically low: **{{contact.wallet_balance}}**.
+
+Your services may be interrupted at any time if the wallet is not recharged immediately.
+
+If the button doesn't work, copy this link into your browser:
+{{contact.topup_url}}
+
+Thank you!
+
+Button:
+- Text: Recharge Wallet
+- Link: {{contact.topup_url}}
+
+---
+
+## Email 3: wallet_balance_level_0
+
+- Subject: 🔒 Your wallet balance is exhausted
+- Preview text: Services are paused. Add funds to resume.
+
+Body:
+
+Hi {{contact.first_name}},
+
+Your wallet balance has been fully used, and your services are currently paused.
+
+Add funds to your wallet to resume them right away.
+
+If the button doesn't work, copy this link into your browser:
+{{contact.topup_url}}
+
+Thank you!
+
+Button:
+- Text: Recharge Wallet
+- Link: {{contact.topup_url}}
+
+---
+
+## Email 4: wallet_balance_exhausted_post_zero
+
+- Subject: 🔒 Reminder: your wallet is still empty
+- Preview text: Your services remain paused until funds are added.
+
+Body:
+
+Hi {{contact.first_name}},
+
+Your wallet balance is still exhausted (**{{contact.wallet_balance}}**), so your services remain paused.
+
+Recharge your wallet to resume them.
+
+If the button doesn't work, copy this link into your browser:
+{{contact.topup_url}}
+
+Thank you!
+
+Button:
+- Text: Recharge Wallet
+- Link: {{contact.topup_url}}
+
+---
+
+## Email 5: wallet_top_up_successful
+
+- Subject: ✅ Wallet top-up successful
+- Preview text: Your wallet has been recharged.
+
+Body:
+
+Hi {{contact.first_name}},
+
+Your wallet has been recharged successfully.
+
+💰 Current balance: **{{contact.wallet_balance}}**
+
+You can continue using all services without interruption. Top up again anytime here:
+{{contact.topup_url}}
+
+Thank you!
+
+---
+
+# 5. Notes
 
 - Ensure WhatsApp templates are approved before use
 - Map both custom fields (Wallet Balance, Topup URL) in the workflow before the WhatsApp step, so the template variables are filled
 - When submitting templates for approval, use a sample like `https://dashboard.ghlwallet.app/topup?locationId=abc123` for the Topup URL variable
 - Maintain consistent naming for templates
+- In each email template, set the button link to the {{contact.topup_url}} merge field (not a fixed URL), so every customer gets their own top-up link
+- Send a test email to yourself from the template to check the link opens your top-up page
 
 ---
 
-# 5. Outcome
+# 6. Outcome
 
 - Automated wallet alerts
 - Better user communication
